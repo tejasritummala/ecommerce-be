@@ -1,17 +1,9 @@
 var express = require('express');
-var mongoose = require("mongoose");
+const DBConnect = require('./config/db')
 const ProductsModel = require('./models/Products')
 
 var app = express()
-
-// Connect to MongoDB database e-dukhan
-mongoose.connect('mongodb://127.0.0.1:27017/e-dukhan', {})
-.then(() => {
-  console.log('Connected to MongoDB');
-})
-.catch((error) => {
-  console.error('Error connecting to MongoDB:', error);
-});
+DBConnect()
 
 app.get('/api/products', async (req, res) => {
     try {
